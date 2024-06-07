@@ -7,3 +7,22 @@ This is absolutely not a replacement for a proper external, nor a replacement fo
 Note that this will not check for open UDP ports, and it scans some common ports based on the Nmap port useage statistics available here: https://svn.nmap.org/nmap/nmap-services
 
 You know the deal - only scan domains you own.
+
+# Domains
+The domains.txt file can take domains or IP addresses. Either wayteh function app will attempt to resovled them first, and will only scan domains/subdomains with DNS records
+
+## Findings IP addresses
+The following bash can be used with `az cli` to give a list of all public IP addresses across all subscriptions:
+```
+for s in `az account list --query "[].{id:id}" --output tsv`
+ do
+   #echo $s
+   for pip in `az network public-ip list --subscription $s  --query "[].{ipAddress:ipAddress}" --out tsv`
+      do
+      echo $pip
+      done
+ done
+```
+
+# Findings Domains
+SHRUG
